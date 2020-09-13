@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Accettazione</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='keywords' content='...'>
+    <meta name='description' content='...'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Taormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù2.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home" data-toggle="tooltip" title="Home Page"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+
+                    <div class="mt-2 offset-xl-7 offset-lg-6 offset-md-4">
+                        <a class="text text-uppercase text-success text-center mx-2" href="/profilo"><%=Account.Nome%> <%=Account.Cognome%> <img src="<%=Account.Foto_account%>" class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></a>   
+                    </div>
+                </nav>
+            </div>
+            <div id="message" data-message="<%=message%>"  hidden>
+
+            </div>
+            
+            <div class="jumbotron bg-white border border-primary rounded col-8 offset-2 mt-4">
+                <h2 class="text text-center text-uppercase">Accettazione</h2>
+                <form class="container was-validated text-center col-10" id="form" method="POST">
+                    <%if(typeof(CheckPrenotazione)=="undefined"){%>
+                <div class="input-group mt-2">
+                        
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ID prenotazione *&nbsp;</span>
+                    </div>
+                    <input class="form-control" type="number" id="prenotazione" name="idPrenotazione" min="0" value="0">
+                    
+                </div>
+                <div class="col-sm-6 offset-sm-3 p-1 my-5">
+                    <button name="conferma" onclick="TrovaPrenotazione()" type="submit" class="btn btn-success btn-block">Trova Prenotazione</button>
+                </div>
+                <%}%>
+                
+
+                <%if(typeof(CheckPrenotazione)!="undefined"){%>
+                <p class="text-center text-primary">seleziona l'operazione da eseguire</p>
+                
+                    <div  class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input " id="check_in" name="check" onclick="mostraIn(), nascondiOut()" <%if(CheckPrenotazione.check==3){%> disabled <%}%>  hidden>
+                        <label class="custom-control-label" for="check_in">Check-In</label> 
+                    </div>
+                    <div  class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="check_out" name="check" onclick="mostraOut(), nascondiIn()" <%if(CheckPrenotazione.check==2){%> disabled <%}%> hidden>
+                        <label class="custom-control-label" for="check_out">Check-Out</label>
+                    </div> 
+                    
+                   
+                    
+                        
+                   
+
+                    <div id="checkIn" class="row mt-3" >
+                        <p class="lead text-uppercase col-12 text-center">Check-In</p>
+
+                        <table class="table">
+                            <body>
+                                <tr >
+                                <td >Pagato: <%if(CheckPrenotazione.TipoPagamento==1){%>Si <%}else{%>No <%}%> </td>
+                                    <td>ID Prenotazione: <%=CheckPrenotazione.ID_PRENOTAZIONE%></td>
+                                    <td>Totale: <%=CheckPrenotazione.Totale%></td>
+                                </tr>
+                                <tr >
+                                    <td >Check-In Previsto: <%=CheckPrenotazione.Datain%></td>
+                                        <td>Check-Out Previsto: <%=CheckPrenotazione.Dataout%></td>
+                                        <td></td>
+                                    </tr>
+                                <tr>
+                                    <td>Intestatario: <%=CheckPrenotazione.Intestatario%></td>
+                                    <td>Numero ospiti: <%=CheckPrenotazione.NumeroClienti%></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                <%if((CheckPrenotazione.Singola>0) || (CheckPrenotazione.Doppia>0) || (CheckPrenotazione.Tripla>0)){%>
+                                <tr>
+                                    <td>Numero Singole: <%=CheckPrenotazione.Singola%></td>
+                                    <td>Numero Doppie : <%=CheckPrenotazione.Doppia%></td>
+                                    <td>Numero Triple : <%=CheckPrenotazione.Tripla%></td>
+                                    </tr>
+                                    <%}%>
+                            </body>
+                        </table>
+    
+                        
+
+                        
+                        <p id="assegnamentoStanza" data-type=<%=CheckPrenotazione.TipoStruttura%> data-check=<%=CheckPrenotazione.check%> data-id=<%=CheckPrenotazione.ID_PRENOTAZIONE%> data-ospiti=<%=CheckPrenotazione.NumeroClienti%>  data-singola=<%=CheckPrenotazione.Singola%> data-doppia=<%=CheckPrenotazione.Doppia%> data-tripla=<%=CheckPrenotazione.Tripla%>>
+                        
+                        
+                            <%if(CheckPrenotazione.TipoStruttura == 0){%>
+
+                        <p class="lead text-uppercase col-12 text-center mt-4">Assegnamento camere</p>
+               
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">
+                                <label>Singola *&nbsp;</label>
+                            <input  name="singola" id="singola" type="text" class="form-control" onchange="verifySingola(this)"  <%if(CheckPrenotazione.Singola==0){%> disabled <%}%>/>
+                                <div class="invalid-feedback">
+                                   Inserire numero di camera seguito dalla virgola (32,)
+                            </div>
+                            </div>
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">
+                                <label>Doppia *&nbsp;</label>
+                                <input  name="doppia" id="doppia" type="text" class="form-control" onchange="verifyDoppia(this)" <%if(CheckPrenotazione.Doppia==0){%> disabled <%}%>/>
+                                <div class="invalid-feedback">
+                                    Inserire numero di camera seguito dalla virgola (32,)
+                                </div>
+                            </div>
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">
+                                <label>Tripla *&nbsp;</label>
+                                <input  name="tripla" id="tripla"  type="text" class="form-control" onchange="verifyTripla(this)" <%if(CheckPrenotazione.Tripla==0){%> disabled <%}%> />
+                                <div class="invalid-feedback">
+                                    Inserire numero di camera seguito dalla virgola (32,)
+                                </div>
+                            </div>
+                          
+                             <%}%>
+
+                         
+                            <p class="lead text-uppercase col-12 text-center mt-4">Dati Anagrafici</p>
+                            <%for(i=0;i<CheckPrenotazione.NumeroClienti;i++){%>
+                            
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">
+                                <label for="name">Nome *&nbsp;</label>
+                                <input id="name<%=i%>" name="name.<%=i%>" type="text" class="form-control" onchange="verifyName(this)" <%if(CheckPrenotazione.check==2){%> required <%}%>/>
+                                <div class="invalid-feedback">
+                                    Inserire nome
+                                </div>
+                            </div>
+            
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">
+                                <label for="surname">Cognome *&nbsp;</label>
+                                <input id="surname<%=i%>" name="surname.<%=i%>"  type="text" class="form-control" onchange="verifyName(this)" <%if(CheckPrenotazione.check==2){%> required <%}%>/>
+                                <div class="invalid-feedback">
+                                    Inserire cognome
+                                </div>
+                            </div>
+            
+                            <div class="form-group col-xl-4 col-lg-6 mt-2">                        
+                                <label for="birthdate">Data di nascita *&nbsp;</label>
+                                <input name="birthdate.<%=i%>" id="birthdate<%=i%>" type="date" class="form-control" <%if(CheckPrenotazione.check==2){%> required <%}%>>
+                                <div class="invalid-feedback">
+                                    Selezionare la data di nascita
+                                </div>
+                            </div>
+                            <%}%>
+
+                            <div class="custom-file mt-4">
+                                <input type="file" class="custom-file-input" id="foto_d" multiple>
+                                <label class="custom-file-label" for="foto_s">Foto Documenti</label>
+                            </div>
+
+
+
+                            <div class="container col-sm-6 offset-sm-3 p-1 my-5">
+                                <button name="check_in" id="salva" type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#questura">Conferma</button>
+
+                                <div class="modal" id="questura">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Questura</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Sei sicuto di inviare questi dati inseriti alla Questura? Una volta Confermato non potrai più tornare indietro
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+                                                <button type="submit"  onclick="CheckInOn()" class="btn btn-success">Conferma</button>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="container col-sm-6 offset-sm-3 p-1 my-5">
+                                <a href="/accettazione">
+                                <button  type="button" class="btn btn-success btn-block" >Indietro</button>
+                                </a>
+                             </div>
+                    </div>
+                    
+
+                    <div id="checkOut" class="row mt-3" >
+                        <p class="lead text-uppercase col-12 text-center">Check-Out</p>
+                    
+                             
+                           
+
+                            <div class="col-sm-6 offset-sm-3 p-1 my-5">
+                                <button name="conferma" onclick="CheckOutOn()"  type="submit" class="btn btn-success btn-block">Conferma</button>
+                            </div>
+                        
+                    </div>
+                    <%}%>
+                    </form>
+                </div>
+            
+            </div>
+
+        </div> 
+    
+</body>
+
+<script>
+ if(document.getElementById("message").dataset.message!= 0)
+    {
+        alert(document.getElementById("message").dataset.message);
+    }
+    
+    var id=document.getElementById("form");
+    selezionaCheckIn=document.getElementById("checkIn");
+    selezionaCheckOut=document.getElementById("checkOut");
+    selezionaCheckIn.setAttribute("hidden", "");
+    selezionaCheckOut.setAttribute("hidden", "");
+    var assegnamento= document.getElementById("assegnamentoStanza");
+
+
+   
+
+
+
+    
+    let NameControl=new RegExp("^(?=.*[a-z]){1,}");
+     if(assegnamento.dataset.type==0 && assegnamento.dataset.check==2)
+     {
+         document.getElementById("singola").setAttribute("required","");
+         document.getElementById("doppia").setAttribute("required","");
+         document.getElementById("tripla").setAttribute("required","");
+         
+     }
+
+     
+
+     function verifySingola(name)
+     {    let number=document.getElementById("assegnamentoStanza").dataset.singola;
+          let trovato=false;
+          let test="^[A-Za-z0-9_-]*$";
+         let SingolaTest=RegExp(test);
+         let words=(name.value).split(',');
+        
+         if(words.length==number)
+             {   
+                 
+         for(i=0;i<words.length;i++)
+         {    
+             if(SingolaTest.test(words[i]))
+             {
+                 trovato=true;
+                 console.log(trovato);
+             }
+             else 
+             {
+                 trovato=false;
+                 break;
+             }
+
+
+         }
+        }
+
+
+        if(trovato==false)
+        {
+            alert("digita la sequenza di stanze correttamente (A45,B32,...)")
+             document.getElementById("singola").value="";
+
+        }
+
+
+
+     }
+
+     function verifyDoppia(name)
+     {    let number=document.getElementById("assegnamentoStanza").dataset.doppia;
+          let trovato=false;
+          let test="^[A-Za-z0-9_-]*$";
+         let SingolaTest=RegExp(test);
+         let words=(name.value).split(',');
+        
+         if(words.length==number)
+             {   
+                 
+         for(i=0;i<words.length;i++)
+         {    
+             if(SingolaTest.test(words[i]))
+             {
+                 trovato=true;
+                 console.log(trovato);
+             }
+             else 
+             {
+                 trovato=false;
+                 break;
+             }
+
+
+         }
+        }
+
+
+        if(trovato==false)
+        {
+            alert("digita la sequenza di stanze correttamente (A45,B32,...)")
+             document.getElementById("singola").value="";
+
+        }
+     }
+
+     function verifyTripla(name)
+     {     let number=document.getElementById("assegnamentoStanza").dataset.tripla;
+          let trovato=false;
+          let test="^[A-Za-z0-9_-]*$";
+         let SingolaTest=RegExp(test);
+         let words=(name.value).split(',');
+        
+         if(words.length==number)
+             {   
+                 
+         for(i=0;i<words.length;i++)
+         {    
+             if(SingolaTest.test(words[i]))
+             {
+                 trovato=true;
+                 console.log(trovato);
+             }
+             else 
+             {
+                 trovato=false;
+                 break;
+             }
+
+
+         }
+        }
+
+
+        if(trovato==false)
+        {
+            alert("digita la sequenza di stanze correttamente (A45,B32,...)")
+             document.getElementById("singola").value="";
+
+        }}
+     
+     
+
+  
+        function verifyName(name)
+     {
+         if(!NameControl.test(name.value))
+         {
+             document.getElementById(name.id).value="";
+             alert("digita un nominativo valido");
+         }
+     }
+    
+    
+
+    
+
+        function nascondiIn() {
+            selezionaCheckIn.setAttribute("hidden", "");
+        }
+
+        function mostraIn() {
+            selezionaCheckIn.removeAttribute("hidden");
+        }
+
+    
+
+        function nascondiOut() {
+            selezionaCheckOut.setAttribute("hidden", "");
+        }    
+        function mostraOut() {
+            selezionaCheckOut.removeAttribute("hidden");
+        }    
+
+
+function TrovaPrenotazione()
+{
+    id.setAttribute("action","/trovaCheck");
+}
+
+function CheckInOn()
+{    
+
+    let id_query=document.getElementById("assegnamentoStanza").dataset.id;
+    let nospiti=document.getElementById("assegnamentoStanza").dataset.ospiti;
+    id.setAttribute("action","/CheckIn_Prenotazione?id="+id_query+"&nospiti="+nospiti);
+    
+}
+
+function CheckOutOn()
+{
+    let id_query=document.getElementById("assegnamentoStanza").dataset.id;
+    id.setAttribute("action","/CheckOut_Prenotazione?id="+id_query);
+
+}
+
+
+
+
+
+
+
+</script>
+
+</html>

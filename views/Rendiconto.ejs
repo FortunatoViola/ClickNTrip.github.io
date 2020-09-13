@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rendiconto</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='keywords' content='...'>
+    <meta name='description' content='...'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Taormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù2.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home" data-toggle="tooltip" title="Home Page"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+
+                    <div class="mt-2 offset-xl-7 offset-lg-6 offset-md-4">
+                        <a class="text text-uppercase text-success text-center mx-2" href="/profilo"><%=Account.Nome%> <%=Account.Cognome%> <img src="<%=Account.Foto_account%>" class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></a>   
+                    </div>
+                </nav>
+            </div>
+
+            <div class="container-fluid col-10 border border-primary rounded my-4">
+                <h2 class="text-center">Rendiconto</h1>
+                <p class="text-center">Sotto il rendiconto dell'ultimo trimestre</p>
+
+                <div class="table-responsive-lg">
+                    <h1 class="text-center">Credenziali degli Ospiti</h1>
+                    <table class="table table-striped table-bordered text-center">
+                       
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Data di nascita</th>
+                                <th>Periodo di permanenza</th>
+                                
+                            </tr>
+                        </thead>
+                        <%for(var i=0;i<DatiOspiti.length;i++){%>
+                        <body>
+                            <tr>
+                                <td><%=DatiOspiti[i].NomeOspite%></td>
+                                <td><%=DatiOspiti[i].CognomeOspite%></td>
+                                <td><%=DatiOspiti[i].DataNascita%></td>
+                                <td><%=DatiOspiti[i].PermanenzaIn%>/<%=DatiOspiti[i].PermanenzaOut%></td>
+                                
+                            </tr>
+                            
+                        </body>
+                           <%}%>
+                    </table>
+                    
+                        <h3 class="text-center text-success"> Totale Tassa di soggiorno = <%=Tot%>€ &nbsp;</h3>
+                       
+                </div>
+
+                <div class="col-sm-4 offset-sm-4 my-4">
+                    <a href="/invia_rendiconto">
+                    <button type="submit" class="btn btn-success btn-block" >Invia Rendiconto</button>
+                </a>
+                </div>
+
+            </div>
+
+            <div class="jumbotron text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><i class="fas fa-envelope"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Nicolò Ditta &copy; Marco Galbo &copy; Marco Stallone &copy; Fortunato Viola</p>
+                  
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

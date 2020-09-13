@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='keywords' content='...'>
+    <meta name='description' content='...'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Taormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù2.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        &nbsp;
+                        <ul class="navbar-nav offset-xl-3 offset-lg-1">
+                            <div <%if(Account.Tipo==0) {%> class="dropdown p-1 invisible"<%}%> <%if(Account.Tipo==1) {%> class="dropdown p-1 "<%}%> id="proprietario">
+                                <button type="button" class="btn btn-primary btn-block dropdown-toggle  " data-toggle="dropdown">
+                                    Gestione Struttura
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="/mie_strutture">
+                                    <button class="dropdown-item btn-sm" type="button" >Le mie Strutture</button>
+                                    </a>
+                                    <a href="/form_struttura">
+                                    <button class="dropdown-item btn-sm" type="button" >Registra Struttura</button>
+                                    </a>
+                                        
+                                </div>
+                            </div>
+                           
+                        <div <%if(Account.Tipo==0) {%> class="p-1 invisible " <%}%> <%if(Account.Tipo==1) {%> class="p-1 col-md-5" <%}%> >
+                                <a href="/prenotazioni_ricevute">
+                                <button class="btn btn-primary btn-block bt-sm col-md-10 offset-xl-1" type="button" >Prenotazioni in attesa</button>
+                                </a>
+                            </div> 
+                           
+
+                            <div class="dropdown p-1">
+                                <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+                                    Gestione Account
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a href="/profilo"><button class="dropdown-item btn-sm" type="button" >Profilo</button></a>
+                                    <div class="dropdown-divider "></div>
+                                    <a href="/prenotazioni_effettuate"><button class="dropdown-item" type="button" >Prenotazioni effettuate</button></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/modifica_account"> <button class="dropdown-item" type="button" >Modifica Account</button></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/esci"> <button class="dropdown-item" type="button" >Esci</button></a>
+                                </div>  
+                            </div> 
+                            
+                        </ul>
+                    
+                    </div>
+                    <div class="mt-2">
+                        <p class="text text-uppercase text-success text-center mx-2"><%=Account.Nome%> <%=Account.Cognome%> <img src=<%=Account.Foto_account %>  class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></p>   
+                    </div>
+                </nav>
+               
+            </div>
+
+               
+            <div class="jumbotron bg-warning col-lg-3 col-md-4 m-2">
+                <div class="row">
+                    <h1 class="text text-center text-uppercase col-sm-12 mb-3">In Evidenza</h1>
+                    <figure>
+                        <img src="immagini/B&B1.jpg" class="rounded img-thumbnail" alt="foto">
+                        <figcaption class="text text-center">{Name}</figcaption>
+                    </figure>
+
+                    <figure class="w-100">
+                        <img src="immagini/Casa1.jpg" class="rounded img-thumbnail" alt="foto">
+                        <figcaption class="text text-center">{Name}</figcaption>
+                    </figure>
+
+                    <figure class="w-100">
+                        <img src="immagini/casa2.jpg" class="rounded img-thumbnail" alt="foto">
+                        <figcaption class="text text-center">{Name}</figcaption>
+                    </figure>                
+                </div>
+            </div> 
+            <div id="message" data-message="<%=message%>" hidden>
+
+            </div>
+            
+            <div class="jumbotron bg-white col-lg-8 col-md-7">
+                <div class="lead bg-ligth text-center col-md-12 py-3">
+                    <h1>Quale sarà la tua prossima meta?</h1><br>
+                    <p>Cerca tra i nostri B&B e le nostre Case vacanza la struttura che fa al caso tuo</p>
+                </div>
+
+                <form class="container was-validated col-md-12 form-inline " action="/trova_annuncio" method="POST" >
+                    <p class="lead text-uppercase m-3 col-10 text-center">Effettua una Ricerca</p>
+
+                    <div class="form-group col-lg-12 col-md-8 mt-2">
+                        <label for="city">Destinazione *&nbsp;&nbsp;&nbsp;</label>
+                        <input id="city" name="city" type="text" class="form-control" placeholder="Dove vuoi andare?" required>
+                        <div class="invalid-feedback">
+                            Inserire Città
+                        </div>                    
+                    </div>
+
+                    <div class="form-group col-lg-5 col-md-8 mt-4">
+                        <label for="datain">Data di Arrivo *&nbsp;&nbsp;&nbsp;</label>
+                        <input type="date" name="datain" id="fromdate" class="form-control"  onchange="cambiaDataOut(this)" required>
+                        <div class="invalid-feedback">
+                            Inserire Data Arrivo
+                        </div>  
+                    </div>
+
+                    <div class="form-group col-lg-5 col-md-8 mt-4">
+                        <label for="dataout">Data di Partenza *&nbsp;&nbsp;&nbsp;</label>
+                        <input type="date" name="dataout" id="todate" class="form-control" onchange="cambiaDataIn(this)" required>
+                        <div class="invalid-feedback">
+                            Inserire Data Partenza
+                        </div> 
+                    </div>
+                
+                    
+                    <div class="form-group col-lg-4 col-md-7 mt-4">
+                        <label for="adulti">Quanti Adulti *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" min="0" max="30" name="adulti" id="adulti" class="form-control" placeholder="Adulto" required>
+                        <div class="invalid-feedback">
+                            Inserire il numero di adulti
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-4 col-md-7 mt-4">
+                        <label for="bambini">Quanti Bambini *&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" min="0" max="10" name="bambini" id="bambini" class="form-control" placeholder="Bambino" required>
+                        <div class="invalid-feedback">
+                            Bambini con meno di 12 anni
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-4 col-md-7 mt-4">
+                        <label for="camere">Quante camere *&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" min="0" max="10" name="camere" id="camere" class="form-control" placeholder="Camera" required>
+                        <div class="invalid-feedback">
+                            Inserire il numero di camere
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 offset-sm-4 col-xs-8 p-1 mt-5">
+                        <button name="cerca" id="cerca" type="submit" class="btn btn-success btn-block" formtarget="_blank">Cerca</button>
+                    </div>
+
+                </form>
+            </div>
+            
+
+            <div class="jumbotron text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><i class="fas fa-envelope"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Nicolò Ditta &copy; Marco Galbo &copy; Marco Stallone &copy; Fortunato Viola</p>
+                  
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    if( document.getElementById("message").dataset.message != 0)
+    {
+        alert(document.getElementById("message").dataset.message);
+    }
+    
+     today=new Date();
+   let mese;
+    if((today.getMonth()+1)<10)
+    {
+     mese="0"+(today.getMonth()+1);
+    }
+    else {
+    mese=(today.getMonth()+1);}
+    
+
+    let x=today.getFullYear()+"-"+mese+"-"+today.getDate();
+    document.getElementById("todate").setAttribute("min",x);
+    document.getElementById("fromdate").setAttribute("min",x);
+
+    function cambiaDataIn(data)
+    {
+        if(data.value!="")
+        {
+            document.getElementById("fromdate").setAttribute("max",data.value);
+        }
+        else {document.getElementById("fromdate").removeAttribute("max");}
+    }
+
+    function cambiaDataOut(data)
+    {
+        if(data.value!="")
+        {
+            document.getElementById("todate").min=data.value;
+        }
+        else {document.getElementById("todate").min=x;}
+
+
+    }
+</script>
+
+
+
+</html>
+
+
+    

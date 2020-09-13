@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrazione Account</title>
+        <meta charset="utf-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+        <meta name='robots' content='noindex, nofollow'>
+        <meta name='keywords' content='...'>
+        <meta name='description' content='...'>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="4000">
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Taormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù2.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Palermo">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+                
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase mx-2" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home"><img src='immagini/favicon.ico' class="rounded"> Click&Trip</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <form class="container was-validated col-sm-8 mt-3" method="POST" action="/sub_register">
+
+                <p class="lead text-uppercase mt-3" style="font-weight: bolder;">Crea il tuo Account</p>
+
+                <p class="lead text-uppercase mt-4">Tipo di Account</p>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="utente" name="account" value="0" required>
+                        <label class="custom-control-label" for="utente">Utente</label> 
+                    </div> <br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="proprietario" name="account" value="1" required>
+                        <label class="custom-control-label" for="proprietario">Proprietario</label>
+                        <div class="invalid-feedback ml-2">
+                            Selezionare tipo di Account che si desidera registrare
+                        </div>
+                    </div>
+
+
+                    <p class="lead text-uppercase mt-3">Dati Personali</p>
+                    <div class="form-group">
+                        <label for="name">Nome *</label>
+                        <input id="name" name="name" type="text" class="form-control" onchange="verifyName(this)" required/>
+                        <div class="invalid-feedback">
+                            Inserire nome
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="surname">Cognome *</label>
+                        <input id="surname" name="surname" type="text" class="form-control" onchange="verifySurname(this)" required/>
+                        <div class="invalid-feedback">
+                            Inserire cognome
+                        </div>
+                    </div>
+
+                    <div class="form-group">                        
+                        <label for="birthdate">Data di nascita *</label>
+                        <input name="birthdate" id="birthdate" type="date" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Selezionare la data di nascita
+                        </div>
+                    </div>
+
+                    <p class="lead text-uppercase mt-3">Credenziali di accesso</p>
+                    <div class="form-group">
+                        <label for="name">E-mail *</label>
+                        <input id="email" name="email" type="text" class="form-control"  onchange="verifyEmail(this)" required>
+                        <div class="invalid-feedback">
+                            Inserire E-mail
+                        </div>
+                    </div>
+
+                    <div id="group" class="form-group">
+                        <label for="password">Password *</label>
+                        <input id="password"  name="password" type="password" class="form-control" onchange="security(this)" required>
+                        <div  id="feedback" class="invalid-feedback">
+                            Inserire la Password
+                        </div>
+                        <div  id="feedback1" class="valid-feedback">
+                        
+                        </div>
+                    </div>
+
+                    <div class="form-group">                        
+                        <label for="validPass">Conferma Password*</label>
+                        <input name="validPass" id="validPass" type="password" onchange="checkPass(this)" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Confermare la Password
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 offset-sm-4 col-xs-8 p-1 my-5">
+                        <button name="registrati" id="registrati" type="submit" class="btn btn-success btn-block">Registrati</button>
+                    </div>
+
+            </form>
+        
+
+        <div class="jumbotron  text-center py-3 col-12" style="margin-bottom: 0;">
+                
+            <div class="col-12">
+                <p class="lead">Contatti</p>
+                <p><img src="immagini/envelope-fill.svg"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                </p>
+            </div>
+            <p class="font-italic" style="font-size: 1.1rem;">&copy; Marco Galbo &copy; Fortunato Viola &copy; Marco Stallone &copy; Nicolò Ditta</p>
+                  
+        </div>
+       
+    </div>
+    </div>
+</body>
+
+<script>
+    let strong=RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.*[0-9]){8,}");
+    let medium=RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]){8,}");
+    let weak=RegExp("(?=.*[a-z]){8,}");
+    let NameControl=new RegExp("^(?=.*[a-z]){1,}");
+    let emailControl=new RegExp("((?=.*[a-z]){1,})@((?=.*[a-z]){1,})\.((?=.*[a-z]){1,})");
+
+     function security(password)
+     {   
+         if(strong.test(password.value))
+         { 
+            document.getElementById("feedback1").innerHTML="Password molto sicura"; 
+         }
+         else if(medium.test(password.value))
+         {
+           
+            document.getElementById("feedback1").innerHTML="Password sicura";
+         }
+         else if(weak.test(password.value))
+          {    
+                document.getElementById("password").value="";
+                alert("Password troppo debole,utilizza almeno 8 caratteri tra cui lettere Maiuscole, numeri e simboli(@ ! # &)");
+         }
+
+         if(document.getElementById("password").value=="")
+         {
+            document.getElementById("feedback").innerHTML="Inserire la password";
+
+         }
+     }
+     function verifyName(name)
+     {
+         if(!NameControl.test(name.value))
+         {
+             document.getElementById("name").value="";
+         }
+     }
+     function verifySurname(name)
+     {
+         if(!NameControl.test(name.value))
+         {
+             document.getElementById("surname").value="";
+         }
+     }
+
+     function verifyEmail(email)
+     {
+         if(!emailControl.test(email.value))
+         { alert("inserisci una email valida");
+             document.getElementById("email").value="";
+            
+         }
+     }
+
+
+
+
+    checkpassword=document.getElementById("password");
+    function checkPass(input)
+    {
+        if (input.value!=checkpassword.value)
+        {
+        input.value="";
+        alert("password non corrispondente");
+        }
+    }
+
+</script>
+
+</html>

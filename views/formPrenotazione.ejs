@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Prenotazione</title>
+        <meta charset="utf-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+        <meta name='robots' content='noindex, nofollow'>
+        <meta name='keywords' content='...'>
+        <meta name='description' content='...'>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                    
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Teormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/panorama.jpg" class="w-100" alt="Panorama">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/NAVE.jpg" class="w-100" alt="Barche">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/geraci.jpeg" class="w-100" alt="Geraci">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+    
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+                    
+                    <div class="mt-2 offset-xl-7 offset-lg-6 offset-md-4">
+                        <p class="text text-uppercase text-success text-center mx-2"><%=Account.Nome%> <%=Account.Cognome%> <img src=<%=Account.Foto_account%> class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></p>   
+                    </div>
+                </nav>
+            </div>
+            
+            
+            <form class="container was-validated col-sm-8 mt-3 form-inline" method="POST" action="/prenota">
+                    
+                <p class="lead text-uppercase mt-3 col-12">Dati Personali</p>
+
+                <div class="form-group col-xl-4 col-lg-10 mt-2">
+                    <label for="name">Nome *&nbsp;</label>
+                    <input id="name" name="name" type="text" class="form-control" required/>
+                    <div class="invalid-feedback">
+                        Inserire nome
+                    </div>
+                </div>
+
+                <div class="form-group col-xl-4 col-lg-10 mt-2">
+                    <label for="surname">Cognome *&nbsp;</label>
+                    <input id="surname" name="surname" type="text" class="form-control" required/>
+                    <div class="invalid-feedback">
+                        Inserire cognome
+                    </div>
+                </div>
+
+            
+                    
+                <p class="lead text-uppercase mt-4 col-12">Tipo di pagamento</p>
+
+                <div class="custom-control custom-radio custom-control-inline col-lg-3 col-md-4 mx-2">
+                    <input type="radio" class="custom-control-input" id="online" name="pagamento" onclick="OnlineOn()" value="1" required>
+                    <label class="custom-control-label" for="online">Online</label> 
+                </div>
+                <div class="custom-control custom-radio custom-control-inline col-lg-3 col-md-4 mx-2">
+                    <input type="radio" class="custom-control-input" id="inloco" name="pagamento" onclick="OnlineOff()" value="0" required>
+                    <label class="custom-control-label" for="inloco">In_loco</label>
+                    <div class="invalid-feedback ml-2">
+                        Selezionare tipo di Pagamento
+                    </div>
+                </div>
+
+                <div id="pOnline" class="mb-3">
+                    <p class="lead text-uppercase mt-3 col-10">Dati Carta</p>
+                        
+                        <div class="input-group col-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text pr-3">Numero</span>
+                            </div>
+                            <input class="form-control" type="text" id="numerocarta" name="carta" placeholder="Numero Carta" >
+                        </div>
+                        <div class="input-group mt-2 col-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text pr-5">CCV</span>
+                            </div>
+                            <input class="form-control" type="text" name="ccv" placeholder="CCV" >
+                        </div>
+                        <div class="input-group mt-2 col-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Scadenza</span>
+                            </div>
+                            <input class="form-control" type="date" name="scadenza" placeholder="Data Scadenza" >
+                        </div>
+                </div>
+
+                <p class="lead text-uppercase mt-4 col-12">Tassa di soggiorno</p>
+                <div class="custom-control custom-radio custom-control-inline col-lg-3 col-md-4 mx-2">
+                        <input type="radio" class="custom-control-input" id="esente" name="tassa" onclick="esenteSi()" value="esente" required>
+                        <label class="custom-control-label" for="esente">Esente</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline col-lg-3 col-md-4 mx-2">    
+                        <input type="radio" class="custom-control-input" id="nonesente" name="tassa" onclick="esenteNo()" value="nonesente" required>
+                        <label class="custom-control-label" for="nonesente">Non_Esente</label>
+                        <div class="invalid-feedback ml-2">
+                            Selezionare esenzione tassa
+                        </div>
+                </div>
+
+                <div class="input-group col-12 mt-2" id="motivazione"  hidden>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Motivazione</span>
+                         </div>
+                        <input class="form-control" rows="2" placeholder="Scrivi la motivazione" name="motivo">
+                </div>
+                <%if(TipoCamera==3 || TipoCamera==1 || TipoCamera==2){%>
+                <p class="lead text-uppercase mt-4 col-12">Selezione Camere</p>
+         
+                
+                <div class="table-responsive-lg text-center col-12">
+                    <table class="table table-striped table-bordered text-center">
+                        
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Scegli camere</th>
+                                <th>Numero Singole</th>
+                                <th>Numero Doppie</th>
+                                <th>Numero Triple</th>
+                                
+                            </tr>
+                        </thead>
+
+                        <body>
+                            <%if(TipoCamera==3 || TipoCamera==1){%>
+                            <tr>
+                                <td><input type="radio" name="combinazione" value="1"></td>
+                                <td><%=Combinazione1[0]%></td>
+                                <td><%=Combinazione1[1]%></td>
+                                <td><%=Combinazione1[2]%></td>
+                                
+                            </tr>
+                            <%}%>
+                            <%if(TipoCamera==3 || TipoCamera==2){%>
+                                <tr>
+                                    <td><input type="radio" name="combinazione" value="2"></td>
+                                    <td><%=Combinazione2[0]%></td>
+                                    <td><%=Combinazione2[1]%></td>
+                                    <td><%=Combinazione2[2]%></td>
+                                    
+                                </tr>
+                                <%}%>
+                            
+                        </body>
+                       <%}%>
+                    </table>
+                    
+                </div>
+                <div class="col-sm-6 offset-sm-2 p-1 my-5">
+                        <button name="prenota" id="prenota" type="submit" class="btn btn-success btn-block" >Prenota</button>
+                </div>
+
+            </form>
+                
+            
+                
+            <div class="jumbotron text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><i class="fas fa-envelope"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Nicolò Ditta &copy; Marco Galbo &copy; Marco Stallone &copy; Fortunato Viola</p>
+            </div>
+        </div>
+
+    </div>   
+</body>
+
+    <script>
+        PagamentoCheck=document.getElementById("pOnline");
+        esenteTassa = document.getElementById("motivazione");
+        
+
+        PagamentoCheck.setAttribute("hidden", "");
+
+            function OnlineOff() {
+                PagamentoCheck.setAttribute("hidden", "");
+                PagamentoCheck.removeAttribute("required");
+            }
+
+            function OnlineOn() {
+                PagamentoCheck.removeAttribute("hidden");
+                PagamentoCheck.setAttribute("required","");
+            }
+   
+      
+
+       
+
+            function esenteSi() {
+                esenteTassa.removeAttribute("hidden");
+              esenteTassa.setAttribute("required","");
+            }
+            function esenteNo() {
+                esenteTassa.setAttribute("hidden", "");
+                esenteTassa.removeAttribute("required");
+            }
+    </script>
+
+</html>

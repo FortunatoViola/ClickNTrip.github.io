@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Autenticazione</title>
+        <meta charset="utf-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+        <meta name='robots' content='noindex, nofollow'>
+        <meta name='keywords' content='...'>
+        <meta name='description' content='...'>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="4000">
+                    <div class="carousel-inamner">
+                        <div class="carousel-item active">
+                            <img src="immagini/cefalù.jpg" class="w-100" alt="Cefalù">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Piazza Politeama">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/Sicily_Italy_Coast_Houses_Boats_Sea_Scopello_Crag_518296_1920x1080_2048x300.jpg" class="w-100" alt="Faraglioni Scopello">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Mondello">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/geraci.jpeg" class="w-100" alt="Vista Geraci">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/cefalù (1).jpg" class="w-100" alt="cefalù2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/Taormina.jpg" class="w-100" alt="taormina">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/panorama.jpg" class="w-100" alt="panorama">
+                        </div><div class="carousel-item">
+                            <img src="immagini/NAVE.jpg" class="w-100" alt="barche">
+                        </div>
+                        
+                        <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#header" data-slide-to="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                        </div>
+                    </div> 
+    
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                        <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+                    </nav>
+                </div>
+                  <div id="message" data-message="<%=message%>" hidden></div>
+            
+                <form class="container was-validated col-sm-4 mt-3" id="form" action='/sub_access' method='POST'>
+                    
+                    <p class="lead text-uppercase mt-3">Dati di accesso</p>
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input id="email" name="email" type="email" class="form-control" required for="email"/>
+                        <div class="invalid-feedback">
+                            Inserire E-mail
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input id="password" name="password" type="password" class="form-control" required for="password"/>
+                        <div class="invalid-feedback">
+                            Inserire Password
+                        </div>
+                    </div>
+            
+
+                    <div class="col-sm-4 offset-sm-4 col-xs-8 p-1 my-5">
+                        <button name="accedi" id="accedi" type="submit" class="btn btn-success btn-block" >Accedi</button>
+                    </div>
+
+                </form>
+            </div>
+                
+            <div class="jumbotron  text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><img src="immagini/envelope-fill.svg"></i>
+                            <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Marco Galbo &copy; Fortunato Viola &copy; Marco Stallone &copy; Nicolò Ditta</p>
+                      
+            </div>
+
+        </div>  
+        
+    </body>
+    <script>
+        if((document.getElementById("message").dataset.message)!="0" )
+        {
+            alert(document.getElementById("message").dataset.message);
+        }
+
+       
+
+   </script>
+</html>

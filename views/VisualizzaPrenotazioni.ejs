@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VisualizzaPrenotazioni</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='keywords' content='...'>
+    <meta name='description' content='...'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            
+             <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                
+                <div class="carousel-inamner">
+                        <div class="carousel-item active">
+                            <img src="immagini/cefalù.jpg" class="w-100" alt="Cefalù">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/PiazzaPoliteama_2048x300.jpg" class="w-100" alt="Piazza Politeama">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/Sicily_Italy_Coast_Houses_Boats_Sea_Scopello_Crag_518296_1920x1080_2048x300.jpg" class="w-100" alt="Faraglioni Scopello">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/sentiero-di-monte-monaco-san-vito-lo-capo_2048x300.jpg" class="w-100" alt="San Vito">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/PalermoMONDELLO_2048x300.jpg" class="w-100" alt="Mondello">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/geraci.jpeg" class="w-100" alt="Vista Geraci">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/cefalù (1).jpg" class="w-100" alt="cefalù2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/Taormina.jpg" class="w-100" alt="taormina">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="immagini/panorama.jpg" class="w-100" alt="panorama">
+                        </div><div class="carousel-item">
+                            <img src="immagini/NAVE.jpg" class="w-100" alt="barche">
+                        </div>
+                        
+                        <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#header" data-slide-to="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+             </div>
+           
+
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase mx-2" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href="/home"><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+                    
+                    <div class="mt-2 offset-xl-7 offset-lg-6 offset-md-4">
+                        <p class="text text-uppercase text-success text-center mx-2" ><%=Account.Nome%> <%=Account.Cognome%><img src=<%=Account.Foto_account%> class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></p>   
+                    </div>
+                </nav>
+
+            <div class="jumbotron bg-white col-lg-8 col-md-7 mx-auto mt-2">
+                <h1 class="display-4 text-center">Ciao Fortunato,<br> queste sono le tue prenotazioni</h1>
+                <p class="lead text-center">Ecco le tue prenotazioni:</p>
+                <%for(i=0;i<StrutturaPrenotata.length;i++){%>
+                    <table class="table">
+                        <body>
+                            <tr >
+                                <td ><p class="font-weight-bold">Stato Prenotazione:</p> <%if(StrutturaPrenotata[i].check==0){%>In sospeso<%} else if(StrutturaPrenotata[i].check==1){%>Rifiutata<%} else if(StrutturaPrenotata[i].check==2){%>Accettata<%} else if (StrutturaPrenotata[i].check==3){%>Check-In Completato<%} else if (StrutturaPrenotata[i].check==4){%>Completata<%}%></td>
+                                <td><p class="font-weight-bold">Totale:</p> <%=StrutturaPrenotata[i].Totale%></td>
+                                <td><p class="font-weight-bold">IDPrenotazione</p> #<%=StrutturaPrenotata[i].ID_PRENOTAZIONE%></td>
+                            </tr>
+                            <tr>
+                                <td><img src="<%=StrutturaPrenotata[i].Foto_struttura%>" class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"> <%=StrutturaPrenotata[i].NomeStruttura%></td>
+                                <td><p class="font-weight-bold">Località: </p><%=StrutturaPrenotata[i].Località%></td>
+                                <td><p class="font-weight-bold">Indirizzo:</p><%=StrutturaPrenotata[i].Indirizzo%></td>
+                            </tr>
+                            <tr>
+                            <td> <p class="font-weight-bold">Numero Ospiti:</p> <%=StrutturaPrenotata[i].NumeroClienti%> </td>
+                            <td><p class="font-weight-bold">Data di Check-In:</p> <%=StrutturaPrenotata[i].Datain%></td>
+                            <td><p class="font-weight-bold">Data di Check-Out:</p> <%=StrutturaPrenotata[i].Dataout%></td>
+                            </tr>
+                            <tr>
+                            
+                            <td><p class="font-weight-bold">Pagamento:</p><%if(StrutturaPrenotata[i].TipoPagamento==1){%>Online<%} else if(StrutturaPrenotata[i].TipoPagamento==0){%>In Loco<%}%></td>
+                            <td><%if(StrutturaPrenotata[i].TipoPagamento==1){%> <p class="font-weight-bold">Numero Carta:</p> <%=StrutturaPrenotata[i].Numero%> <%}%> </td>
+                            <td></td>
+                            </tr>
+                           
+                        </body>
+                    </table>
+                    
+                    <div>
+                        <%if(StrutturaPrenotata[i].check==0){%>
+                        <input class="form-control" type="text" readonly style="height:fit-content" value="Prenotazione in sospeso, attendi l'esito del proprietario. Ricontrolli più tardi">
+                        <%} 
+                            
+                             else if(StrutturaPrenotata[i].check==2){%>
+                                <p class="form-control" type="text"  readonly style="height:fit-content" >La sua richiesta di prenotazione è stata accettata, le ricordiamo di portare con se l'identificativo della prenotazione al fine di completare il Check-In alla struttura durante la giornata del <%=StrutturaPrenotata[i].Datain%> </p>
+                                <%}%> 
+                    </div>
+                       
+                    
+                
+                <%if(StrutturaPrenotata[i].check==4){%>
+                <div class="col-sm-3 offset-sm-7 p-1 my-5">
+                    <a href="/lasciaRecensione?id_struttura=<%=StrutturaPrenotata[i].ref_id_struttura%>">
+                    <button name="recensione" id="recensione" type="submit" class="btn btn-success btn-block" >Lascia Recensione</button>
+                    </a>
+                </div>
+                <%}%>
+<br> <br> <br> <br>
+
+                <%}%>
+            </div>
+        </div>
+      
+            <div class="jumbotron text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><i class="fas fa-envelope"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Nicolò Ditta &copy; Marco Galbo &copy; Marco Stallone &copy; Fortunato Viola</p>
+            </div>
+        
+    </div>
+            
+</body>
+
+</html>

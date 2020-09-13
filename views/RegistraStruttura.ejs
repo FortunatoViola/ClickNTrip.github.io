@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registra Struttura</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' sizes='32x32 64x64' href='immagini/favicon.ico'>
+
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='keywords' content='...'>
+    <meta name='description' content='...'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="header" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="3000">
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="immagini/Taormina.jpg" class="w-100" alt="Teormina">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/scopello.jpg" class="w-100" alt="Scopello">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/panorama.jpg" class="w-100" alt="Panorama">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/NAVE.jpg" class="w-100" alt="Barche">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/geraci.jpeg" class="w-100" alt="Geraci">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="immagini/cefalù.jpg" class="w-100" alt="Cefalù">
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#header" data-slide-to="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#header" data-slide-to="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
+                    <a class="navbar-brand text-success text-uppercase" style="font-size: 2rem; font-style: oblique; font-weight: bold;" href='/home'><img src='immagini/favicon.ico' class="rounded">  Click&Trip</a>
+                    
+                    <div class="mt-2 offset-xl-7 offset-lg-6 offset-md-4">
+                        <p class="text text-uppercase text-success text-center "><%= Account.Nome %> <%= Account.Cognome%> <img src=<%=Account.Foto_account%> class="rounded-circle img-thumbnail" style="width: 64px; height: 64px;"></p>   
+                    </div>
+                </nav>
+            </div>
+            
+            
+            <h1 class="text text-center col-12 mt-4 ">Registrazione Struttura</h1>
+            
+            <form class="container was-validated col-8 mt-3 form-inline" enctype="multipart/form-data" method='POST' action='/sub_struttura' >
+                
+                <p class="lead text-uppercase mt-4 col-12">Tipo Struttura</p>
+                <div class="custom-control custom-radio custom-control-inline col-lg-4 col-md-5 col-sm-12 ml-2">
+                    <input type="radio" class="custom-control-input" id="bandb" name="tipo" onclick="mostraB(), nascondiC()" value="0" required>
+                    <label class="custom-control-label" for="bandb">Bed and Breakfast</label> 
+                </div>
+                <div class="custom-control custom-radio custom-control-inline col-lg-4 col-md-6 col-sm-12 mx-2">
+                    <input type="radio" class="custom-control-input" id="casav" name="tipo" onclick="mostraC(), nascondiB()" value="1" required>
+                    <label class="custom-control-label mx-4" for="casav">Casa_Vacanze</label>
+                    <div class="invalid-feedback">
+                        Selezionare tipo di Struttura
+                    </div>
+                </div>
+                
+                <p class="lead text-uppercase mt-4 col-12">Dati Struttura</p>
+                <div class="form-group col-lg-4 col-sm-12">
+                    <label for="name_s">Nome Struttura *</label>
+                    <input id="name_s" name="name" type="text" class="form-control ml-2" placeholder="Nome" required/>
+                    <div class="invalid-feedback">
+                        Inserire il nome della Struttura
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-4 col-sm-12 my-2">
+                    <label for="citta">Località *</label>
+                    <input id="citta" name="citta" type="text" class="form-control ml-2" placeholder="Città" required/>
+                    <div class="invalid-feedback">
+                        Inserire la città 
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-4 col-sm-12 my-2">
+                    <label for="indirizzo">Indirizzo *</label>
+                    <input id="indirizzo" name="indirizzo" type="text" class="form-control ml-2" placeholder="via indirizzo, n" required>
+                    <div class="invalid-feedback">
+                        Inserire l'indirizzo della struttura
+                    </div>
+                </div>
+
+                <div id="tipoB" class="row ml-1">
+                    <p class="lead text-uppercase mt-4 col-12">Dati Camere</p>
+                    <div class="input-group mt-4 col-lg-5 col-sm-5 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Singola</span>
+                        </div>
+                        <input class="form-control" type="number" id="singola" name="singola" value="0" min="0" max="30">
+                    </div>
+                    <div class="input-group mt-4 col-lg-6 col-sm-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Prezzo</span>
+                        </div>
+                        <input class="form-control" type="text" id="prezzo_s" name="prezzo_s" value="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text">€ per notte</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-4 col-lg-5 col-sm-5">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Doppia</span>
+                        </div>
+                        <input class="form-control" type="number" id="doppia" name="doppia" value="0" min="0" max="30" required>
+                    </div>
+                    <div class="input-group mt-4 col-lg-6 col-sm-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Prezzo</span>
+                        </div>
+                        <input class="form-control" type="text" id="prezzo_d" name="prezzo_d" value="0" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">€ per notte</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-4 col-lg-5 col-sm-5">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tripla</span>
+                        </div>
+                        <input class="form-control" type="number" id="singola" name="singola" value="0" min="0" max="30">
+                    </div>
+                    <div class="input-group mt-4 col-lg-6 col-sm-7">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Prezzo</span>
+                        </div>
+                        <input class="form-control" type="text" id="prezzo_t" name="prezzo_t" value="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text">€ per notte</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tipoC" class="row ml-1">
+                    <p class="lead text-uppercase mt-4 col-12">Dati Camere</p>
+                    <div class="input-group mt-4 col-lg-6 col-sm-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">N° Camere</span>
+                        </div>
+                        <input class="form-control" type="number" id="camere" name="camere" value="0" min="0" max="10" required>
+                    </div>
+                    <div class="input-group mt-4 col-lg-6 col-sm-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">N° Posti Letto</span>
+                        </div>
+                        <input class="form-control" type="number" id="letto" name="letto" value="0" min="0" max="10" required>
+                    </div>
+                    <div class="input-group mt-4 col-lg-12 col-sm-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Prezzo</span>
+                        </div>
+                        <input class="form-control" type="text" id="prezzo" name="prezzo" value="0">
+                        <div class="input-group-append">
+                            <span class="input-group-text">€ per notte</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mt-5 col-lg-7 col-sm-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Tassa di Soggiorno</span>
+                    </div>
+                    <input class="form-control" type="text" id="tassa_s" name="tassa_s" value="0">
+                    <div class="input-group-append">
+                        <span class="input-group-text">€ al giorno</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-5 col-sm-12">
+                    <select class="custom-select" name="posizione">
+                        <option selected>Distanza dal Centro</option>
+                        <option>0 - 500m</option>
+                        <option>500m - 1000m</option>
+                        <option>1000m - 1500m</option>
+                        <option>1500m - 2000m</option>
+                        <option>2000m - 2500m</option>
+                        <option>2500m - 3000m</option>
+                        <option>3000m - 3500m</option>
+                        <option>3500m - 4000m</option>
+                        <option>4500m - 5000m</option>
+                        <option> > 5000m</option>
+                    </select>
+                </div>
+
+                <p class="lead text-uppercase mt-5 col-12">Descrizione Struttura</p>
+                <div class="input-group col-12 mt-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Descrizione</span>
+                    </div>
+                    <textarea class="form-control" rows="5" name="descrizione" placeholder="Fornisci una descrizione testuale della tua struttura." required></textarea>
+                </div>
+
+                <p class="lead text-uppercase mt-5 col-12">Comfort</p>
+                <div class="input-group m-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input name="wifi" value="1" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Wi-fi</span>
+                    </div>
+                </div>
+                <div class="input-group m-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input name="parcheggio" value="1" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Parcheggio</span>
+                    </div>
+                </div>
+                <div class="input-group m-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input name="ariaCondizionata" value="1" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Aria Condizionata</span>
+                    </div>
+                </div>
+                <div class="input-group m-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input name="piscina" value="1" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Piscina</span>
+                    </div>
+                </div>
+                 
+                <p class="lead text-uppercase mt-5 col-12">Foto Struttura</p>
+                <div class="custom-file mt-4">
+                    <input type="file" class="custom-file-input" id="foto_s" name="foto_s" >
+                    <label class="custom-file-label" for="foto_s">Foto della struttura</label>
+                </div>
+
+
+
+                <div class="col-sm-6 offset-sm-3 p-1 my-5">
+                    <button name="registra_s" id="registra_s" type="submit" class="btn btn-success btn-block">Registra</button>
+                </div>
+
+            </form>
+            
+        
+            <div class="jumbotron text-center py-3 col-12" style="margin-bottom: 0;">
+                
+                <div class="col-12">
+                    <p class="lead">Contatti</p>
+                    <p><i class="fas fa-envelope"></i>
+                        <a href="mailto:clikandtrip@gmail.com">clickandtrip@gmail.com</a>
+                    </p>
+                </div>
+                <p class="font-italic" style="font-size: 1.1rem;">&copy; Nicolò Ditta &copy; Marco Galbo &copy; Marco Stallone &copy; Fortunato Viola</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    //modifica il nome della barra di caricamento con quello dell'elemento selezionato
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+<script>
+    selezionaBed=document.getElementById("tipoB");
+    selezionaCasa=document.getElementById("tipoC");
+
+    selezionaBed.setAttribute("hidden", "")
+
+        function nascondiB() {
+            selezionaBed.setAttribute("hidden", "");
+        }
+
+        function mostraB() {
+            selezionaBed.removeAttribute("hidden");
+        }
+
+    selezionaCasa.setAttribute("hidden", "")
+
+        function nascondiC() {
+            selezionaCasa.setAttribute("hidden", "");
+        }    
+        function mostraC() {
+            selezionaCasa.removeAttribute("hidden");
+        }    
+</script>
+
+</html>
